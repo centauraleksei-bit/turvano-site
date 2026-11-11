@@ -2,7 +2,7 @@ TURVANO — Construction Draw Verification
 Public website of Turvano, Inc., a Delaware corporation (File No. 10703472) incorporated in July 2026.
 Founder & CEO: Aleksei Ivanov
 Business address: 4131 N Central Expressway, Suite 900, Dallas, TX 75204, United States
-TURVANO is a construction draw verification platform for US private lenders: photo-based documentation of renovation progress, reviewed against the scope of work by qualified reviewers. Funding decisions stay with the lender.
+TURVANO is construction draw verification software for US private lenders: renovation photo evidence reviewed against the scope of work by reviewers. Offered to lenders and financial institutions only; not offered to the general public, including buyers or sellers of real estate. Turvano, Inc. is not a real estate inspector and does not offer inspection services. Funding decisions stay with the lender.
 Software development is carried out by the company's development center, LLC "Turvano" (Bishkek, Kyrgyzstan).
 Website: https://turvano.com
 LinkedIn: https://www.linkedin.com/company/turvano
