@@ -42,47 +42,71 @@
 }
 </script>
 <style>
-  :root { --ever:#0B3B2E; --ink:#132A22; --parch:#F5F1E6; }
+  /* WP-BRAND-NAVY-V1 (checklist 969): the TURVANO app's own colours, one brand with the app. */
+  :root { --page:#F3F5F9; --ink:#111827; --muted:#4A5568; --navy:#14284B; --line:#DCE2EC; }
   * { margin:0; padding:0; box-sizing:border-box; }
   html,body { min-height:100%; }
   body {
-    background: var(--ever);
-    color: var(--parch);
-    font-family: Georgia, 'Times New Roman', serif;
-    display:flex; align-items:center; justify-content:center;
-    padding: 48px 32px;
+    /* The "protected sheet": fine wavy lines with the micro-text TURVANO · SHA-256,
+       the same tile as the app's wallpaper (shown at half its pixel size). */
+    background: var(--page) url("assets/protected-sheet-tile.png") repeat;
+    background-size: 240px 84px;
+    color: var(--ink);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
   }
-  main { max-width: 640px; width:100%; }
-  .logo { width: 300px; max-width: 72vw; color: var(--parch); display:block; }
+  /* Header like modern product sites: the mark on the left, the account entry in the corner. */
+  header.top { background: #FFFFFF; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  header.top .bar { max-width: 1040px; margin: 0 auto; padding: 14px 24px; display:flex; align-items:center; justify-content:space-between; gap: 16px; }
+  .logo { width: 190px; max-width: 48vw; color: var(--navy); display:block; }
+  .account { display:flex; flex-direction:column; align-items:flex-end; gap: 4px; }
+  /* The web cabinet entry. DISABLED during device testing (founder, 27.11.2026): no link, so
+     nobody can start a sign-up from the public site yet. To open it at launch: give the element
+     href="https://app.turvano.com/sign-in", drop aria-disabled and the "is-off" class, delete .soon. */
+  .signin { display:inline-flex; align-items:center; height: 40px; padding: 0 18px; border-radius: 10px;
+    border: 1.5px solid var(--navy); color: var(--navy); font-weight: 600; font-size: 15px; border-bottom-width: 1.5px; }
+  .signin.is-off { opacity: .45; cursor: not-allowed; pointer-events: none; }
+  .soon { font-size: 12px; color: var(--muted); letter-spacing: .02em; }
+  main { max-width: 720px; margin: 40px auto 56px; background: #FFFFFF; border: 1px solid var(--line);
+    border-radius: 16px; padding: 48px 44px; box-shadow: 0 1px 2px rgba(17,24,39,.04); }
+  @media (max-width: 600px) { main { margin: 20px 12px 32px; padding: 28px 20px; } header.top .bar { padding: 12px 16px; } }
   h1 {
     font-size: clamp(20px, 3.4vw, 28px);
     font-weight: 400; line-height: 1.45;
-    margin-top: 56px; letter-spacing: .01em;
+    margin-top: 0; letter-spacing: .01em; color: var(--ink);
   }
   p.sub {
     margin-top: 20px; font-size: clamp(15px, 2.2vw, 17px);
-    line-height: 1.65; opacity: .82;
+    line-height: 1.65; color: var(--muted);
   }
-  .rule { width: 72px; height: 3px; background: var(--parch); opacity:.35; margin-top: 48px; }
+  .rule { width: 72px; height: 3px; background: var(--navy); opacity:.35; margin-top: 48px; }
   .contact { margin-top: 28px; font-size: 15px; letter-spacing:.02em; }
-  a { color: var(--parch); text-decoration: none; border-bottom: 1px solid rgba(245,241,230,.4); padding-bottom:2px; }
-  a:hover { border-bottom-color: var(--parch); }
+  a { color: var(--navy); text-decoration: none; border-bottom: 1px solid rgba(20,40,75,.4); padding-bottom:2px; }
+  a:hover { border-bottom-color: var(--navy); }
   #about, #how, #notice { margin-top: 56px; }
   #about h2, #how h2, #notice h2 {
     font-size: 13px; font-weight: 400; letter-spacing: .18em;
-    text-transform: uppercase; opacity: .6; margin-bottom: 18px;
+    text-transform: uppercase; color: var(--navy); margin-bottom: 18px;
   }
-  #about p, #how p, #notice p { font-size: 15px; line-height: 1.7; opacity: .85; margin-top: 10px; }
-  #notice p { font-size: 13.5px; opacity: .7; }
+  #about p, #how p, #notice p { font-size: 15px; line-height: 1.7; margin-top: 10px; }
+  #notice p { font-size: 13.5px; color: var(--muted); }
+  #notice { border-top: 1px solid var(--line); padding-top: 28px; }
   #about p.founder { font-size: 17px; opacity: 1; }
   #about p.social { margin-top: 18px; letter-spacing: .02em; line-height: 2; }
   #about p.social a { margin-right: 14px; white-space: nowrap; }
-  footer { margin-top: 64px; font-size: 12.5px; opacity:.5; letter-spacing:.04em; }
+  footer { margin-top: 64px; font-size: 12.5px; color: var(--muted); letter-spacing:.04em; }
 </style>
 </head>
 <body>
+<header class="top">
+  <div class="bar">
+  <svg class="logo" viewBox="0 0 574 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TURVANO"><g transform="translate(40,36) scale(1.5625)"><path fill="currentColor" d="M32 7 L56 27 L52 27 L52 55 L12 55 L12 27 L8 27 Z"/><rect x="18" y="33" width="8" height="12" rx="1.5" fill="#B45309"/><rect x="28" y="33" width="8" height="12" rx="1.5" fill="#1D4ED8"/><rect x="38" y="33" width="8" height="12" rx="1.5" fill="#0F766E"/><rect x="18" y="48" width="28" height="2.4" rx="1.2" fill="#FFFFFF"/></g><g fill="currentColor" transform="translate(166,113.0) scale(0.06705539358600583,-0.06705539358600583)"><path transform="translate(0,0)" d="M257 0V578H24V686H615V578H382V0Z"/><path transform="translate(699,0)" d="M375 -12Q281 -12 214.0 18.0Q147 48 112.0 109.5Q77 171 77 262V686H202V264Q202 180 247.0 137.0Q292 94 375 94Q457 94 503.5 137.0Q550 180 550 264V686H675V262Q675 171 639.0 109.5Q603 48 536.5 18.0Q470 -12 375 -12Z"/><path transform="translate(1510,0)" d="M81 0V686H463Q537 686 586.0 660.0Q635 634 659.5 586.5Q684 539 684 475Q684 408 653.5 356.5Q623 305 564 279L707 0H570L442 258H206V0ZM206 363H450Q501 363 529.0 393.0Q557 423 557 475Q557 509 544.5 532.0Q532 555 508.5 567.0Q485 579 450 579H206Z"/><path transform="translate(2313,0)" d="M272 0 11 686H147L315 220Q320 208 325.5 192.0Q331 176 336.5 162.0Q342 148 345 137H351Q355 147 359.5 161.0Q364 175 369.5 190.0Q375 205 380 219L548 686H678L417 0Z"/><path transform="translate(3062,0)" d="M8 0 285 686H441L719 0H584L525 150H195L137 0ZM236 255H483L409 445Q405 455 399.0 471.5Q393 488 386.5 507.0Q380 526 373.5 545.0Q367 564 363 578H357Q350 558 341.0 532.0Q332 506 323.5 482.5Q315 459 310 445Z"/><path transform="translate(3849,0)" d="M81 0V686H200L512 276Q518 269 526.5 257.5Q535 246 542.5 234.5Q550 223 554 215H560Q559 231 559.0 246.5Q559 262 559 276V686H679V0H562L249 414Q239 428 225.5 447.5Q212 467 206 476H201Q201 463 201.0 446.5Q201 430 201 413V0Z"/><path transform="translate(4669,0)" d="M406 -12Q295 -12 215.0 27.0Q135 66 92.0 145.0Q49 224 49 343Q49 463 92.0 541.5Q135 620 215.0 659.0Q295 698 406 698Q517 698 597.0 659.0Q677 620 719.5 541.5Q762 463 762 343Q762 224 719.5 145.0Q677 66 597.0 27.0Q517 -12 406 -12ZM406 94Q460 94 502.0 109.0Q544 124 573.5 153.5Q603 183 618.5 227.5Q634 272 634 331V353Q634 413 618.5 458.0Q603 503 573.5 532.5Q544 562 502.0 577.0Q460 592 406 592Q352 592 309.5 577.0Q267 562 237.5 532.5Q208 503 193.0 458.0Q178 413 178 353V331Q178 272 193.0 227.5Q208 183 237.5 153.5Q267 124 309.5 109.0Q352 94 406 94Z"/></g></svg>
+    <div class="account">
+      <a class="signin is-off" role="link" aria-disabled="true" tabindex="-1">Sign in</a>
+      <span class="soon">Opens at launch</span>
+    </div>
+  </div>
+</header>
 <main>
-  <svg class="logo" viewBox="0 0 574 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TURVANO"><g fill="currentColor" transform="translate(40,40.0) scale(1.0)"><rect x="14" y="16" width="72" height="14"/><rect x="43" y="36" width="14" height="48"/></g><g fill="currentColor" transform="translate(166,113.0) scale(0.06705539358600583,-0.06705539358600583)"><path transform="translate(0,0)" d="M257 0V578H24V686H615V578H382V0Z"/><path transform="translate(699,0)" d="M375 -12Q281 -12 214.0 18.0Q147 48 112.0 109.5Q77 171 77 262V686H202V264Q202 180 247.0 137.0Q292 94 375 94Q457 94 503.5 137.0Q550 180 550 264V686H675V262Q675 171 639.0 109.5Q603 48 536.5 18.0Q470 -12 375 -12Z"/><path transform="translate(1510,0)" d="M81 0V686H463Q537 686 586.0 660.0Q635 634 659.5 586.5Q684 539 684 475Q684 408 653.5 356.5Q623 305 564 279L707 0H570L442 258H206V0ZM206 363H450Q501 363 529.0 393.0Q557 423 557 475Q557 509 544.5 532.0Q532 555 508.5 567.0Q485 579 450 579H206Z"/><path transform="translate(2313,0)" d="M272 0 11 686H147L315 220Q320 208 325.5 192.0Q331 176 336.5 162.0Q342 148 345 137H351Q355 147 359.5 161.0Q364 175 369.5 190.0Q375 205 380 219L548 686H678L417 0Z"/><path transform="translate(3062,0)" d="M8 0 285 686H441L719 0H584L525 150H195L137 0ZM236 255H483L409 445Q405 455 399.0 471.5Q393 488 386.5 507.0Q380 526 373.5 545.0Q367 564 363 578H357Q350 558 341.0 532.0Q332 506 323.5 482.5Q315 459 310 445Z"/><path transform="translate(3849,0)" d="M81 0V686H200L512 276Q518 269 526.5 257.5Q535 246 542.5 234.5Q550 223 554 215H560Q559 231 559.0 246.5Q559 262 559 276V686H679V0H562L249 414Q239 428 225.5 447.5Q212 467 206 476H201Q201 463 201.0 446.5Q201 430 201 413V0Z"/><path transform="translate(4669,0)" d="M406 -12Q295 -12 215.0 27.0Q135 66 92.0 145.0Q49 224 49 343Q49 463 92.0 541.5Q135 620 215.0 659.0Q295 698 406 698Q517 698 597.0 659.0Q677 620 719.5 541.5Q762 463 762 343Q762 224 719.5 145.0Q677 66 597.0 27.0Q517 -12 406 -12ZM406 94Q460 94 502.0 109.0Q544 124 573.5 153.5Q603 183 618.5 227.5Q634 272 634 331V353Q634 413 618.5 458.0Q603 503 573.5 532.5Q544 562 502.0 577.0Q460 592 406 592Q352 592 309.5 577.0Q267 562 237.5 532.5Q208 503 193.0 458.0Q178 413 178 353V331Q178 272 193.0 227.5Q208 183 237.5 153.5Q267 124 309.5 109.0Q352 94 406 94Z"/></g></svg>
   <h1>Construction draw verification software for private lenders.</h1>
   <p class="sub">Software that lenders use to review renovation evidence against the scope of work. Contractors capture photo evidence in a mobile app; a reviewer records a finding for each line item of the declared scope; the lender receives a review report. Funding decisions stay with the lender.</p>
   <div class="rule"></div>
